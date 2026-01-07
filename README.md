@@ -10,11 +10,32 @@
 ## 🎯 Proje Hakkında
 Bu proje, sistem yöneticileri ve web geliştiricileri için tasarlanmış, **VB.NET** tabanlı hibrit bir tarama aracıdır. Standart `ping` komutlarının ötesine geçerek, hedef sunucu ile **TLS 1.2** üzerinden el sıkışır, sertifika otoritesini (Issuer) analiz eder ve **WHOIS** sunucularına (Port 43) doğrudan bağlanarak domain bitiş tarihlerini sorgular.
 
-## Nasıl Kullanılır
-Sadece dosyaları indirin ve çalıştırın:
-1. [Watcher.exe](./Watcher.exe?raw=true) dosyasını indirin.
-2. [siteler.txt](./siteler.txt) dosyasını aynı klasöre koyun.
-3. `Watcher.exe`'yi çalıştırın.
+Nasıl Kullanılır?
+Uygulamanın sorunsuz çalışması için Watcher.exe ve siteler.txt dosyalarının aynı klasör içerisinde bulunması gerekmektedir.
+
+1. Adım: Dosyaları Edinin
+Tüm gerekli dosyaları tek seferde indirmek için Google Drive klasörünü kullanabilirsiniz:
+
+Tüm Dosyaları İndir (Google Drive)
+
+2. Adım: Klasör Yapısını Kontrol Edin
+İndirdiğiniz dosyaları bir klasöre çıkarttığınızda görünüm şu şekilde olmalıdır:
+
+https://drive.google.com/drive/folders/1PKsWxx9cDS4lYn9GMigQrvA7hgtGYzC0?usp=sharing
+
+Klasör/
+├── Watcher.exe     (Uygulama)
+└── siteler.txt     (Takip listesi)
+└── Watcher.vb      (Açık Kaynak Kodlar)
+
+3. Adım: Kendi Listeni Oluştur
+siteler.txt dosyasını açın ve takip etmek istediğiniz web sitelerini her satıra bir tane gelecek şekilde yazıp kaydedin:
+
+*
+google.com
+aselsan.com
+cecey.net
+*
 
 ![gozetlemekulesi](https://github.com/user-attachments/assets/a6c03d08-e8ce-4d4e-bf59-18466ba9ccb7)
 

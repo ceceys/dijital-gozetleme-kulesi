@@ -67,9 +67,11 @@ Kullanıcı deneyimini iyileştirmek adına, yoğun tarama işlemleri sırasınd
 ### Lisans ve Özgürlük
 Bu proje tamamen açık kaynaklıdır. Proje içerisindeki tüm dosyaları (Watcher.vb, Watcher.exe, siteler.txt) dilediğiniz gibi indirebilir, değiştirebilir, geliştirebilir ve kendi adınızla veya markanızla yeniden yayınlayabilirsiniz. Kod üzerinde herhangi bir kısıtlama yoktur; geliştirip daha ileriye taşımanızdan mutluluk duyarım!
 
+### Technical Infrastructure and Operation
 
-The application leverages System.Net.Security's SslStream and RemoteCertificateValidationCallback to capture certificate details during the handshake process. Domain information is retrieved via System.Net.Sockets by establishing raw TCP communication with WHOIS servers on Port 43. To ensure a smooth user interface, Multithreading with Task.Factory handles asynchronous animations , while advanced Regex patterns parse complex WHOIS outputs to extract expiry dates in yyyy-MM-dd format.
+This application performs deep scans by combining several critical technologies in the background. First, leveraging the SslStream and RemoteCertificateValidationCallback features within the System.Net.Security library, it establishes a secure connection with the target server and captures certificate details during the handshake phase using a "man-in-the-middle" approach. To access domain information, it establishes raw data communication directly with Port 43 (WHOIS) servers using TcpClient via System.Net.Sockets.
 
+To enhance the user experience and prevent the interface from freezing during intensive scanning processes, a Multithreading structure is utilized; thanks to Task.Factory, an asynchronous "spinner" animation runs smoothly in the background. Finally, advanced Regex (Regular Expressions) patterns are employed to perform data mining in yyyy-MM-dd format, accurately extracting date information from the complex and irregular text blobs received from WHOIS servers.
 
 ### License & Contribution
 This project is fully open-source. You are free to download, modify, enhance, and republish all files within this project (Watcher.vb, Watcher.exe, siteler.txt) as you see fit. There are no restrictions on the code; feel free to build upon it and share your own version!

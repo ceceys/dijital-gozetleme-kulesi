@@ -23,19 +23,12 @@ Tüm Dosyaları İndir (Google Drive)
 
 https://drive.google.com/drive/folders/1PKsWxx9cDS4lYn9GMigQrvA7hgtGYzC0?usp=sharing
 
-Klasör/
-├── Watcher.exe     (Uygulama)
-└── siteler.txt     (Takip listesi)
-└── Watcher.vb      (Açık Kaynak Kodlar)
+Klasör | Watcher.exe | siteler.txt | Watcher.vb
 
 3. Adım: Kendi Listeni Oluştur
 siteler.txt dosyasını açın ve takip etmek istediğiniz web sitelerini her satıra bir tane gelecek şekilde yazıp kaydedin:
 
-*
-google.com
-aselsan.com
-cecey.net
-*
+google.com,aselsan.com,cecey.net...
 
 ![gozetlemekulesi](https://github.com/user-attachments/assets/a6c03d08-e8ce-4d4e-bf59-18466ba9ccb7)
 
@@ -63,12 +56,24 @@ HTTP isteklerinden bağımsız olarak, TCP üzerinden WHOIS sunucularına bağla
 
 ---
 
-Teknoloji,Kullanım Amacı
-System.Net.Security,SslStream ve RemoteCertificateValidationCallback ile man-in-the-middle mantığında sertifika yakalama.
-System.Net.Sockets,TcpClient ile Port 43 (WHOIS) ham veri iletişimi.
-Multithreading,UI donmasını önlemek için Task.Factory ile asenkron spinner animasyonu.
-Regex,Karmaşık WHOIS metin çıktılarından tarih formatlarını (yyyy-MM-dd) ayrıştırma.
+Teknik Altyapı ve Çalışma Mantığı
+Bu uygulama, arka planda birkaç kritik teknolojiyi bir arada kullanarak derinlemesine tarama yapar. İlk olarak, System.Net.Security kütüphanesindeki SslStream ve RemoteCertificateValidationCallback özelliklerinden yararlanarak, hedef sunucuyla güvenli bir bağlantı kurar ve sertifika detaylarını henüz el sıkışma aşamasında bir "man-in-the-middle" mantığıyla yakalar. Alan adı bilgilerine ulaşmak için ise System.Net.Sockets üzerinden TcpClient kullanarak doğrudan Port 43 (WHOIS) sunucularıyla ham veri iletişimi kurar.
+
+Kullanıcı deneyimini iyileştirmek adına, yoğun tarama işlemleri sırasında arayüzün donmasını engellemek için Multithreading (Çoklu İş Parçacığı) yapısı kullanılmıştır; Task.Factory sayesinde asenkron bir "spinner" animasyonu arka planda akıcı bir şekilde çalışır. Son olarak, WHOIS sunucularından gelen karmaşık ve düzensiz metin yığınları arasından tarih bilgilerini hatasız bir şekilde ayıklamak için gelişmiş Regex (Düzenli İfadeler) desenleri kullanılarak yyyy-MM-dd formatında veri madenciliği yapılır.
+
+Lisans ve Özgürlük
+Bu proje tamamen açık kaynaklıdır. Proje içerisindeki tüm dosyaları (Watcher.vb, Watcher.exe, siteler.txt) dilediğiniz gibi indirebilir, değiştirebilir, geliştirebilir ve kendi adınızla veya markanızla yeniden yayınlayabilirsiniz. Kod üzerinde herhangi bir kısıtlama yoktur; geliştirip daha ileriye taşımanızdan mutluluk duyarım!
+----
+
+The application leverages System.Net.Security's SslStream and RemoteCertificateValidationCallback to capture certificate details during the handshake process. Domain information is retrieved via System.Net.Sockets by establishing raw TCP communication with WHOIS servers on Port 43. To ensure a smooth user interface, Multithreading with Task.Factory handles asynchronous animations , while advanced Regex patterns parse complex WHOIS outputs to extract expiry dates in yyyy-MM-dd format.
+
+
+License & Contribution
+This project is fully open-source. You are free to download, modify, enhance, and republish all files within this project (Watcher.vb, Watcher.exe, siteler.txt) as you see fit. There are no restrictions on the code; feel free to build upon it and share your own version!
+----
 
 Yasal Uyarı
 Bu araç sadece bilgi toplama ve yönetim amaçlıdır. WHOIS sunucularına çok sık istek göndermek IP adresinizin geçici olarak engellenmesine neden olabilir.
+
+
 

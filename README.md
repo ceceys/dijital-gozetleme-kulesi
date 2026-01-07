@@ -4,10 +4,17 @@
 ![Network](https://img.shields.io/badge/Network-WHOIS%20Track-orange?style=for-the-badge&logo=globus)
 ![License](https://img.shields.io/badge/License-MIT-red?style=for-the-badge)
 
+
 > **Advanced Network & Security Monitor** > Web varlıklarınızın sağlık durumunu, SSL güvenliğini ve alan adı otoritesini tek bir terminal ekranından yönetin, Eğer benim gibi web sitelerinizi günlük takip etme rutinine sahip olmak istiyorsanız bu araç sizi sıkıcı manuel kontrolden kurtarıp işlerinizi otomatikleştirecek.
 
 ## 🎯 Proje Hakkında
 Bu proje, sistem yöneticileri ve web geliştiricileri için tasarlanmış, **VB.NET** tabanlı hibrit bir tarama aracıdır. Standart `ping` komutlarının ötesine geçerek, hedef sunucu ile **TLS 1.2** üzerinden el sıkışır, sertifika otoritesini (Issuer) analiz eder ve **WHOIS** sunucularına (Port 43) doğrudan bağlanarak domain bitiş tarihlerini sorgular.
+
+## Nasıl Kullanılır
+Sadece dosyaları indirin ve çalıştırın:
+1. [Watcher.exe](./Watcher.exe?raw=true) dosyasını indirin.
+2. [siteler.txt](./siteler.txt) dosyasını aynı klasöre koyun.
+3. `Watcher.exe`'yi çalıştırın.
 
 ![gozetlemekulesi](https://github.com/user-attachments/assets/a6c03d08-e8ce-4d4e-bf59-18466ba9ccb7)
 

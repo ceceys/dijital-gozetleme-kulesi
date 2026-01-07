@@ -6,6 +6,9 @@
 
 
 > **Dijital Gözetleme Kulesi & Security Monitor** > Web varlıklarınızın sağlık durumunu, SSL güvenliğini ve alan adı otoritesini tek bir terminal ekranından yönetin. Eğer siz de benim gibi web sitelerinizi günlük olarak takip etme rutinine sahipseniz, bu araç sizi sıkıcı manuel kontrollerden kurtarıp işlerinizi otomatikleştirecek.
+>
+--
+>
 > **Digital Watchtower & Security Monitor** > Manage the health, SSL security, and domain authority of your web assets from a single terminal interface. If you share my routine of daily website monitoring, this tool will save you from tedious manual checks and automate your entire workflow.
 
 ## Proje Hakkında

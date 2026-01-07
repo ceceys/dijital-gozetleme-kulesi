@@ -17,18 +17,21 @@ Uygulamanın sorunsuz çalışması için Watcher.exe ve siteler.txt dosyaların
 Tüm gerekli dosyaları tek seferde indirmek için Google Drive klasörünü kullanabilirsiniz:
 
 Tüm Dosyaları İndir (Google Drive)
+https://drive.google.com/drive/folders/1PKsWxx9cDS4lYn9GMigQrvA7hgtGYzC0?usp=sharing
+-
 
 2. Adım: Klasör Yapısını Kontrol Edin
 İndirdiğiniz dosyaları bir klasöre çıkarttığınızda görünüm şu şekilde olmalıdır:
 
-https://drive.google.com/drive/folders/1PKsWxx9cDS4lYn9GMigQrvA7hgtGYzC0?usp=sharing
-
 Klasör | Watcher.exe | siteler.txt | Watcher.vb
+-
+
 
 3. Adım: Kendi Listeni Oluştur
 siteler.txt dosyasını açın ve takip etmek istediğiniz web sitelerini her satıra bir tane gelecek şekilde yazıp kaydedin:
 
 google.com,aselsan.com,cecey.net...
+-
 
 ![gozetlemekulesi](https://github.com/user-attachments/assets/a6c03d08-e8ce-4d4e-bf59-18466ba9ccb7)
 

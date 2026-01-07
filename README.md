@@ -5,8 +5,8 @@
 ![License](https://img.shields.io/badge/License-MIT-red?style=for-the-badge)
 
 
-> **Advanced Network & Security Monitor** > Web varlıklarınızın sağlık durumunu, SSL güvenliğini ve alan adı otoritesini tek bir terminal ekranından yönetin. Eğer siz de benim gibi web sitelerinizi günlük olarak takip etme rutinine sahipseniz, bu araç sizi sıkıcı manuel kontrollerden kurtarıp işlerinizi otomatikleştirecek.
-> Manage the health, SSL security, and domain authority of your web assets from a single terminal interface. If you share my routine of daily website monitoring, this tool will save you from tedious manual checks and automate your entire workflow.
+> **Dijital Gözetleme Kulesi & Security Monitor** > Web varlıklarınızın sağlık durumunu, SSL güvenliğini ve alan adı otoritesini tek bir terminal ekranından yönetin. Eğer siz de benim gibi web sitelerinizi günlük olarak takip etme rutinine sahipseniz, bu araç sizi sıkıcı manuel kontrollerden kurtarıp işlerinizi otomatikleştirecek.
+> **Digital Watchtower & Security Monitor** > Manage the health, SSL security, and domain authority of your web assets from a single terminal interface. If you share my routine of daily website monitoring, this tool will save you from tedious manual checks and automate your entire workflow.
 
 ## Proje Hakkında
 Bu proje, sistem yöneticileri ve web geliştiricileri için tasarlanmış, **VB.NET** tabanlı hibrit bir tarama aracıdır. Standart `ping` komutlarının ötesine geçerek, hedef sunucu ile **TLS 1.2** üzerinden el sıkışır, sertifika otoritesini (Issuer) analiz eder ve **WHOIS** sunucularına (Port 43) doğrudan bağlanarak domain bitiş tarihlerini sorgular.

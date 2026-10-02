@@ -1,7 +1,6 @@
-aselsan.com
-nesine.com
 google.com
-store.steampowered.com
-instagram.com
-youtube.com
-cecey.net
+github.com
+microsoft.com
+cloudflare.com
+wikipedia.org
+turkiye.gov.tr

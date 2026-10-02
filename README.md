@@ -1,83 +1,65 @@
-#  Dijital Gözetleme Kulesi (Digital Watchtower)
-![VB.NET](https://img.shields.io/badge/Language-VB.NET-blue?style=for-the-badge&logo=visual-studio)
-![Security](https://img.shields.io/badge/Security-SSL%20Check-brightgreen?style=for-the-badge&logo=lock)
-![Network](https://img.shields.io/badge/Network-WHOIS%20Track-orange?style=for-the-badge&logo=globus)
-![License](https://img.shields.io/badge/License-MIT-red?style=for-the-badge)
+# Dijital Gözetleme Kulesi
 
+Web sitelerinin erişilebilirliğini, SSL sertifika süresini ve alan adı bitiş tarihini tek ekranda izleyen Windows konsol aracı.
 
-> **Dijital Gözetleme Kulesi & Security Monitor** > Web varlıklarınızın sağlık durumunu, SSL güvenliğini ve alan adı otoritesini tek bir terminal ekranından yönetin. Eğer siz de benim gibi web sitelerinizi günlük olarak takip etme rutinine sahipseniz, bu araç sizi sıkıcı manuel kontrollerden kurtarıp işlerinizi otomatikleştirecek.
->
---
->
-> **Digital Watchtower & Security Monitor** > Manage the health, SSL security, and domain authority of your web assets from a single terminal interface. If you share my routine of daily website monitoring, this tool will save you from tedious manual checks and automate your entire workflow.
+| Sürüm | Platform | Lisans | İndirme |
+|---|---|---|---|
+| 1.0.0 | Windows, .NET Framework 4 | MIT | [Son sürüm](../../releases/latest) |
 
-## Proje Hakkında
-Bu proje, sistem yöneticileri ve web geliştiricileri için tasarlanmış, **VB.NET** tabanlı hibrit bir tarama aracıdır. Standart `ping` komutlarının ötesine geçerek, hedef sunucu ile **TLS 1.2** üzerinden el sıkışır, sertifika otoritesini (Issuer) analiz eder ve **WHOIS** sunucularına (Port 43) doğrudan bağlanarak domain bitiş tarihlerini sorgular.
-
-Nasıl Kullanılır?
-Uygulamanın sorunsuz çalışması için Watcher.exe ve siteler.txt dosyalarının aynı klasör içerisinde bulunması gerekmektedir.
-
-1. Adım: Dosyaları Edinin
-Tüm gerekli dosyaları tek seferde indirmek için Google Drive klasörünü kullanabilirsiniz:
-
-### Tüm Dosyaları İndir (Google Drive)
-https://drive.google.com/drive/folders/1PKsWxx9cDS4lYn9GMigQrvA7hgtGYzC0?usp=sharing
-
-2. Adım: Klasör Yapısını Kontrol Edin
-İndirdiğiniz dosyaları bir klasöre çıkarttığınızda görünüm şu şekilde olmalıdır:
-
-Klasör | Watcher.exe | siteler.txt | Watcher.vb
-
-3. Adım: Kendi Listeni Oluştur
-siteler.txt dosyasını açın ve takip etmek istediğiniz web sitelerini her satıra bir tane gelecek şekilde yazıp kaydedin:
-
-google.com,aselsan.com,cecey.net...
-
-![gozetlemekulesi](https://github.com/user-attachments/assets/a6c03d08-e8ce-4d4e-bf59-18466ba9ccb7)
-
-## Temel Özellikler
-
-###  Derinlemesine SSL Analizi
-Sadece "sertifika var mı?" diye bakmaz. `X509Certificate2` sınıfını kullanarak şunları analiz eder:
-- **Kalan Gün Hesaplama:** Bitiş süresine göre renkli uyarı sistemi (Kritik/Uyarı/Güvenli).
-- **Protokol Detayları:** TLS versiyonu (örn. TLS 1.2) ve Şifreleme Algoritması (örn. AES 256).
-- **Otorite Kontrolü:** Sertifikayı sağlayan kurum (Google Trust Services, R3, DigiCert vb.).
-
-### Akıllı WHOIS (Domain) Takibi
-HTTP isteklerinden bağımsız olarak, TCP üzerinden WHOIS sunucularına bağlanır.
-- **TLD Duyarlı:** `.com`, `.net`, `.org` ve özellikle **`.tr` (METU/TRABİS)** uzantıları için özelleştirilmiş sunucu seçimi yapar.
-- **Regex Parsing:** Ham WHOIS verisi içerisinden "Expiration Date" bilgisini ayıklar.
-
-### Performans ve HTTP Denetimi
-- **Latency Ölçümü:** Sunucu yanıt süresini milisaniye (ms) cinsinden ölçer.
-- **Bot Koruması Algılama:** 403 hatalarını analiz ederek WAF/Bot koruması olup olmadığını raporlar.
-- **Tarayıcı Simülasyonu:** Gerçek bir tarayıcı (User-Agent) gibi davranarak sunucu tarafındaki filtreleri aşar.
-
-### Görsel Raporlama
-- **Deep Dive Mode:** Tarama sırasında canlı "Spinner" animasyonu.
-- **Dashboard:** İşlem sonunda tüm siteleri tek tabloda özetleyen renk kodlu (Yeşil/Sarı/Kırmızı) detaylı rapor.
+Sorumlu olunan sitelerin her sabah elle kontrol edilmesi yerine tek komutla durum raporu almak için geliştirildi.
 
 ---
 
-### Teknik Altyapı ve Çalışma Mantığı
-Bu uygulama, arka planda birkaç kritik teknolojiyi bir arada kullanarak derinlemesine tarama yapar. İlk olarak, System.Net.Security kütüphanesindeki SslStream ve RemoteCertificateValidationCallback özelliklerinden yararlanarak, hedef sunucuyla güvenli bir bağlantı kurar ve sertifika detaylarını henüz el sıkışma aşamasında bir "man-in-the-middle" mantığıyla yakalar. Alan adı bilgilerine ulaşmak için ise System.Net.Sockets üzerinden TcpClient kullanarak doğrudan Port 43 (WHOIS) sunucularıyla ham veri iletişimi kurar.
+## Ne yapar?
 
-Kullanıcı deneyimini iyileştirmek adına, yoğun tarama işlemleri sırasında arayüzün donmasını engellemek için Multithreading (Çoklu İş Parçacığı) yapısı kullanılmıştır; Task.Factory sayesinde asenkron bir "spinner" animasyonu arka planda akıcı bir şekilde çalışır. Son olarak, WHOIS sunucularından gelen karmaşık ve düzensiz metin yığınları arasından tarih bilgilerini hatasız bir şekilde ayıklamak için gelişmiş Regex (Düzenli İfadeler) desenleri kullanılarak yyyy-MM-dd formatında veri madenciliği yapılır.
+Listedeki her site için sırayla:
 
-### Lisans ve Özgürlük
-Bu proje tamamen açık kaynaklıdır. Proje içerisindeki tüm dosyaları (Watcher.vb, Watcher.exe, siteler.txt) dilediğiniz gibi indirebilir, değiştirebilir, geliştirebilir ve kendi adınızla veya markanızla yeniden yayınlayabilirsiniz. Kod üzerinde herhangi bir kısıtlama yoktur; geliştirip daha ileriye taşımanızdan mutluluk duyarım!
+- **HTTP denetimi:** durum kodu ve yanıt süresi (ms). 403 yanıtlarında bot korumasını ayrıca belirtir.
+- **DNS:** sitenin çözümlendiği IP adresleri (en fazla üç).
+- **SSL:** TLS el sıkışması sırasında sertifikayı okur; protokol, şifreleme algoritması, sertifika sağlayıcısı ve kalan gün.
+- **Alan adı:** WHOIS sunucusuna (port 43) doğrudan bağlanıp bitiş tarihini bulur. `.com`, `.net`, `.org`, `.info` ve `.tr` uzantılarını destekler.
 
-### Technical Infrastructure and Operation
+Tarama bitince bütün siteler renk kodlu tek bir tabloda özetlenir.
 
-This application performs deep scans by combining several critical technologies in the background. First, leveraging the SslStream and RemoteCertificateValidationCallback features within the System.Net.Security library, it establishes a secure connection with the target server and captures certificate details during the handshake phase using a "man-in-the-middle" approach. To access domain information, it establishes raw data communication directly with Port 43 (WHOIS) servers using TcpClient via System.Net.Sockets.
+| Durum | SSL | Alan adı |
+|---|---|---|
+| Uyarı (sarı) | 15 günden az | 30 günden az |
+| Kritik (kırmızı) | süresi geçmiş | süresi geçmiş |
 
-To enhance the user experience and prevent the interface from freezing during intensive scanning processes, a Multithreading structure is utilized; thanks to Task.Factory, an asynchronous "spinner" animation runs smoothly in the background. Finally, advanced Regex (Regular Expressions) patterns are employed to perform data mining in yyyy-MM-dd format, accurately extracting date information from the complex and irregular text blobs received from WHOIS servers.
+## Kullanım
 
-### License & Contribution
-This project is fully open-source. You are free to download, modify, enhance, and republish all files within this project (Watcher.vb, Watcher.exe, siteler.txt) as you see fit. There are no restrictions on the code; feel free to build upon it and share your own version!
+1. [Son sürümden](../../releases/latest) `Watcher.exe` ve `siteler.txt` dosyalarını aynı klasöre indirin.
+2. `siteler.txt` dosyasına izlenecek siteleri her satıra bir tane gelecek şekilde yazın:
 
-Yasal Uyarı
-Bu araç sadece bilgi toplama ve yönetim amaçlıdır. WHOIS sunucularına çok sık istek göndermek IP adresinizin geçici olarak engellenmesine neden olabilir.
+   ```
+   ornek.com
+   ornek.com.tr
+   ornek.org
+   ```
 
+3. `Watcher.exe` dosyasını çalıştırın.
 
+## Teknik ayrıntılar
 
+| Bileşen | Kullanılan |
+|---|---|
+| Sertifika okuma | `SslStream`, `RemoteCertificateValidationCallback`, `X509Certificate2` |
+| WHOIS | `TcpClient` ile port 43, TLD'ye göre sunucu seçimi, Regex ile tarih ayrıştırma |
+| HTTP | `HttpWebRequest`, tarayıcı başlıkları, TLS 1.2 |
+| Arayüz | Konsol, ayrı iş parçacığında çalışan ilerleme göstergesi |
+
+Kaynak kod tek dosyadadır: [`Watcher.vb`](Watcher.vb).
+
+## Not
+
+WHOIS sunucularına kısa aralıklarla çok sayıda sorgu göndermek IP adresinin geçici olarak engellenmesine yol açabilir. Araç bilgi toplama ve izleme amaçlıdır.
+
+## Lisans
+
+[MIT](LICENSE) · **by cecey** · [LinkedIn](https://www.linkedin.com/in/cuma-ali-dirik/) · [GitHub](https://github.com/ceceys)
+
+---
+
+### English summary
+
+**Dijital Gözetleme Kulesi** ("Digital Watchtower") is a Windows console tool written in VB.NET that checks a list of websites in one run: HTTP status and latency, resolved IPs, TLS certificate details and days left, and domain expiry via direct WHOIS (port 43) queries for .com, .net, .org, .info and .tr. Results are summarized in a color-coded table. MIT licensed.
